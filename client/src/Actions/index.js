@@ -46,12 +46,71 @@ export const createRecipe = (datos) => async (dispatch) => {
 		dispatch({type: 'CREATE_RECIPE', payload: 'no cargaron los datos'});
 	}
 };
-export const OrderByScore = () => (dispatch) => {
-	dispatch({type: 'ORDER_BY_SCORE', payload: 0});
-};
+
 export const cleanDetail = () => (dispatch) => {
 	dispatch({type: 'CLEAN_DETAIL', payload: {}});
 };
+export const cleanRecipes = () => (dispatch) => {
+	dispatch({type: 'CLEAN_RECIPES', payload: []});
+};
 export const dietsFilter = (array) => (dispatch) => {
 	dispatch({type: 'DIETS_FILTER', payload: array});
+};
+export const orderAz = (array) => async (dispatch) => {
+        dispatch({
+            type: "ORDER_AZ",
+            payload: array.sort((a, b) => {
+                if (a.title > b.title) {
+                    return 1;
+                }
+                if (a.title < b.title) {
+                    return -1;
+                }
+                return 0;
+            }),
+        });
+    
+};
+export const orderZa = (array) => async (dispatch) => {
+        dispatch({
+            type: "ORDER_ZA",
+            payload: array.sort((a, b) => {
+                if (a.title > b.title) {
+                    return -1;
+                }
+                if (a.title < b.title) {
+                    return 1;
+                }
+                return 0;
+            }),
+        });
+	}
+export const orderBetter = (array) => async (dispatch) => {
+        dispatch({
+            type: "ORDER_BETTER",
+            payload: array.sort((a, b) => {
+                if (a.spoonacularScore > b.spoonacularScore) {
+                    return -1;
+                }
+                if (a.spoonacularScore < b.spoonacularScore) {
+                    return 1;
+                }
+                return 0;
+            }),
+        });
+	}
+export const orderWorst = (array) => async (dispatch) => {
+        dispatch({
+            type: "ORDER_WORST",
+            payload: array.sort((a, b) => {
+                if (a.spoonacularScore > b.spoonacularScore) {
+                    return 1;
+                }
+                if (a.spoonacularScore < b.spoonacularScore) {
+                    return -1;
+                }
+                return 0;
+            }),
+        });
+    
 };

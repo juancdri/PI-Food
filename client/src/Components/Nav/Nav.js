@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import { StyledDiv } from './style';
 import Buscador from '../Buscador/Buscador';
 import DietsFilter from '../DietsFilter/DietsFilter';
+import Ordered from '../Ordered/Ordered';
 import { Link } from 'react-router-dom';
 function Nav() {
     // const handleChange= (e)=>{
@@ -13,15 +14,7 @@ function Nav() {
         <StyledDiv>
             <Buscador />
             <div>
-                <select> Sellect one
-                    <option >
-                        Filter
-                    </option>
-                    <option>A-Z</option>
-                    <option>Z-A</option>
-                    <option>Mejores Puntuaciones</option>
-                    <option>Peores Puntuaciones</option>
-                </select>
+                <Ordered />
                 <DietsFilter />
                 <Link to ='/CreateRecipe'>
                 <button>Create New Recipe</button>

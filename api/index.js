@@ -30,11 +30,6 @@ conn.sync({ force: true }).then(() => {
         name:'gluten free'
       }
     });
-    const dinner = Type.findOrCreate({
-      where:{
-        name:'dinner'
-      }
-    });
     const vegetarian = Type.findOrCreate({
       where:{
         name:'vegetarian'

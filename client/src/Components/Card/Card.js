@@ -11,10 +11,10 @@ const Card = ({id, title, image, diets, Types, dishTypes }) => {
             </Link>
             {image? <img src={image} width="80" height="80" alt="" />: null}
             {diets?<h4>Diets:
-                {diets && diets.map((el) =>(<li>{el}</li>))}
+                {diets && diets.map((el, i) =>(<li key={i} >{el}</li>))}
                 </h4>:null}
             {Types?<h4>Diets:
-                {Types && Types.map((el) =>(<li>{el.name}</li>))}
+                {Types && Types.map((el, i) =>(<li key={i} >{el.name}</li>))}
                 </h4>:null}
             {/* {dishTypes? <h5>{dishTypes}</h5>: null} */}
         </StyledDiv>

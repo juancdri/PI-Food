@@ -1,12 +1,14 @@
 import filterByDiets from '../functions/filterByDiets';
 const initialState = {
     allRecipes:[],
+    recipesFilteredByDiet:[],
     recipes: [],
     detail: {},
     recipeTitle: [],
     recipeDiets:[],
     creater: '',
-    filtrado:[]
+    filtrado:[],
+    filterName:'all'
 };
 
 
@@ -33,6 +35,11 @@ const Reducer = (state = initialState, { payload, type }) => {
                 ...state,
                 detail: payload
             };
+        case 'CLEAN_RECIPES':
+            return{
+                ...state,
+                recipes: payload
+            };
         case 'GET_RECIPE_DIETS':
             return{
                 ...state,
@@ -50,7 +57,33 @@ const Reducer = (state = initialState, { payload, type }) => {
             return{
                 ...state,
                 recipes: algo,
-                
+                recipesFilteredByDiet:algo,
+                filterName:payload
+
+            };
+        case 'ORDER_AZ':
+            return{
+                ...state,
+                recipes: payload,
+                // filterName:'AZ'
+            };
+        case 'ORDER_ZA':
+            return{
+                ...state,
+                recipes: payload,
+                // filterName:'ZA'
+            };
+        case 'ORDER_BETTER':
+            return{
+                ...state,
+                recipes: payload,
+                // filterName:'BETTER'
+            };
+        case 'ORDER_WORST':
+            return{
+                ...state,
+                recipes: payload,
+                // filterName:'WORST'
             };
 
         default:

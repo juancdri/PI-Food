@@ -29,18 +29,18 @@ console.log(getRecipesDetail)
             {recipesDetail.image? <img src={recipesDetail.image} width="80" height="80" alt="" />: null}
             <h6>Resumen:{recipesDetail.summary}</h6>
             {recipesDetail.diets?<h4>Diets:
-                {recipesDetail.diets && recipesDetail.diets.map((el) =>(<li>{el}</li>))}
+                {recipesDetail.diets && recipesDetail.diets.map((el, i) =>(<li key={i} >{el}</li>))}
                 </h4>:null}
             {recipesDetail.Types?<h4>Diets:
-                {recipesDetail.Types && recipesDetail.Types.map((el) =>(<li>{el.name}</li>))}
+                {recipesDetail.Types && recipesDetail.Types.map((el, i) =>(<li key={i}>{el.name}</li>))}
                 </h4>:null}
             {recipesDetail.dishTypes? <h5>Categoría:
-                {recipesDetail.dishTypes && recipesDetail.dishTypes.map((el) =>( <li>{el}</li>))}
+                {recipesDetail.dishTypes && recipesDetail.dishTypes.map((el, i) =>( <li key={i}>{el}</li>))}
                 </h5>:null} 
             <h6>Health Score:{recipesDetail.healthScore}</h6>
             <h6>Puntaje:{recipesDetail.spoonacularScore}</h6>
             <h4>Paso a paso:
-                {recipesDetail.analyzedInstructions && recipesDetail.analyzedInstructions.map((el) =>( <li>{el}</li>))}
+                {recipesDetail.analyzedInstructions && recipesDetail.analyzedInstructions.map((el, i) =>( <li key={i} >{el}</li>))}
                 </h4>
                 <Link to='/home'>
           <button  className='btn'>Back</button> 
