@@ -1,13 +1,13 @@
 import React,{useState} from 'react';
 import { StyledDiv } from './style';
 import Buscador from '../Buscador/Buscador';
+import DietsFilter from '../DietsFilter/DietsFilter';
 import { Link } from 'react-router-dom';
-function Nav({ }) {
+function Nav() {
     // const handleChange= (e)=>{
     //     // [input, setInput] = useState('')
     //     // setInput(e.target.value);
     // }
-
 
     return (
         <StyledDiv>
@@ -22,17 +22,7 @@ function Nav({ }) {
                     <option>Mejores Puntuaciones</option>
                     <option>Peores Puntuaciones</option>
                 </select>
-                <select >
-                    <option value="all">Diets</option>
-                    <option value="glutenFree">Gluten Free</option>
-                    <option value="ketogenic">Ketogenic</option>
-                    <option value="ovoVegatarian">Ovo-Vegatarian</option>
-                    <option value="lactoVegatarian">Lacto-Vegatarian</option>
-                    <option value="vegan">Vegan</option>
-                    <option value="pescetarian">Pescetarian</option>
-                    <option value="paleo">Paleo</option>
-                    <option value="primal">Primal</option>
-                </select>
+                <DietsFilter />
                 <Link to ='/CreateRecipe'>
                 <button>Create New Recipe</button>
                 </Link>

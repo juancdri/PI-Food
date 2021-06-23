@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 export const getRecipes = () => async (dispatch) => {
 	try {
 		const res = await axios.get(`http://localhost:3001/recipes`);
@@ -27,13 +28,22 @@ export const getRecipeTitle = (name) => async (dispatch) => {
 		dispatch({type: 'GET_RECIPE_TITLE', payload: []});
 	}
 };
+export const getRecipeDiets = () => async (dispatch) => {
+	try {
+		const res = await axios.get(`http://localhost:3001/types`);
+		dispatch({type: 'GET_RECIPE_DIETS', payload: res.data});
+	} catch (err) {
+		console.log(err);
+		dispatch({type: 'GET_RECIPE_DIETS', payload: []});
+	}
+};
 export const createRecipe = (datos) => async (dispatch) => {
 	try {
-		const res = await axios.post(`http://localhost:3001/recipes`, datos);
+		const res = await axios.post(`http://localhost:3001/recipes/`, datos);
 		dispatch({type: 'CREATE_RECIPE', payload: res.data});
 	} catch (err) {
 		console.log(err);
-		dispatch({type: 'CREATE_RECIPE', payload: ''});
+		dispatch({type: 'CREATE_RECIPE', payload: 'no cargaron los datos'});
 	}
 };
 export const OrderByScore = () => (dispatch) => {
@@ -41,4 +51,7 @@ export const OrderByScore = () => (dispatch) => {
 };
 export const cleanDetail = () => (dispatch) => {
 	dispatch({type: 'CLEAN_DETAIL', payload: {}});
+};
+export const dietsFilter = (array) => (dispatch) => {
+	dispatch({type: 'DIETS_FILTER', payload: array});
 };

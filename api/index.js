@@ -25,49 +25,49 @@ const { conn, Type } = require('./src/db.js');
 conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
     console.log('%s listening at 3001');// eslint-disable-line no-console
-    const gluttenFree = Type.findOrCreate({
+    const glutenFree = Type.findOrCreate({
       where:{
-        name:'Gluten Free'
+        name:'gluten free'
       }
     });
-    const ketogenic = Type.findOrCreate({
+    const dinner = Type.findOrCreate({
       where:{
-        name:'Ketogenic'
+        name:'dinner'
       }
     });
     const vegetarian = Type.findOrCreate({
       where:{
-        name:'Vegetarian'
+        name:'vegetarian'
       }
     });
     const lactoVegetarian = Type.findOrCreate({
       where:{
-        name:'Lacto-Vegetarian'
+        name:'lacto ovo vegetarian'
       }
     });
     const ovoVegetarian = Type.findOrCreate({
       where:{
-        name:'Ovo-Vegetarian'
+        name:'dairy free'
       }
     });
     const vegan = Type.findOrCreate({
       where:{
-        name:'Vegan'
+        name:'vegan'
       }
     });
     const pescetarian = Type.findOrCreate({
       where:{
-        name:'Pescetarian'
+        name:'pescatarian'
       }
     });
     const paleo = Type.findOrCreate({
       where:{
-        name:'Paleo'
+        name:'paleolithic'
       }
     });
     const primal = Type.findOrCreate({
       where:{
-        name:'Primal'
+        name:'primal'
       }
     });
 

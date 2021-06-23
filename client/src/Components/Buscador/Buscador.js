@@ -11,9 +11,9 @@ function Buscador() {
         dispatch(getRecipeTitle(input));
     }, [dispatch, input]);
 //Deshabilito el onchange porque me le acaban las busquedas de datos diarias a la api externa
-    // const handleChange = (e) => {
-    //     setInput(e.target.value);
-    // };
+    const handleChange = (e) => {
+        setInput(e.target.value);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -33,7 +33,7 @@ function Buscador() {
                     autoComplete="off"
                     value={input} //el hook declarado al principio
                     name="title"
-                    // onChange={(e) => handleChange(e)} //volver a marcar 
+                    onChange={(e) => handleChange(e)} //volver a marcar 
                 />
             </form>
         </StyledDiv>

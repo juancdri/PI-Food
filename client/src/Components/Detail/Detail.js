@@ -26,14 +26,17 @@ console.log(getRecipesDetail)
         <StyledDiv>
             <h2 className="card-title">{recipesDetail.title}</h2>
             
-            <img src={recipesDetail.image} width="80" height="80" alt="" />
+            {recipesDetail.image? <img src={recipesDetail.image} width="80" height="80" alt="" />: null}
             <h6>Resumen:{recipesDetail.summary}</h6>
-            <h4>Diets:
+            {recipesDetail.diets?<h4>Diets:
                 {recipesDetail.diets && recipesDetail.diets.map((el) =>(<li>{el}</li>))}
-                </h4>
-            <h5>Categoría:
+                </h4>:null}
+            {recipesDetail.Types?<h4>Diets:
+                {recipesDetail.Types && recipesDetail.Types.map((el) =>(<li>{el.name}</li>))}
+                </h4>:null}
+            {recipesDetail.dishTypes? <h5>Categoría:
                 {recipesDetail.dishTypes && recipesDetail.dishTypes.map((el) =>( <li>{el}</li>))}
-                </h5>
+                </h5>:null} 
             <h6>Health Score:{recipesDetail.healthScore}</h6>
             <h6>Puntaje:{recipesDetail.spoonacularScore}</h6>
             <h4>Paso a paso:

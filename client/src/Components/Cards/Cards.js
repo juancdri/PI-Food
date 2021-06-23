@@ -22,6 +22,7 @@ export const Cards = () => {
                         title={el.title}
                         image={el.image}
                         diets={el.diets}
+                        Types={el.Types}
                         dishTypes={el.dishTypes}
                     />
                 ))}

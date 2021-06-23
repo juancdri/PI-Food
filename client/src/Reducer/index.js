@@ -1,9 +1,13 @@
+import filterByDiets from '../functions/filterByDiets';
 const initialState = {
+    allRecipes:[],
     recipes: [],
     detail: {},
-    recipeTitle: []
+    recipeTitle: [],
+    recipeDiets:[],
+    creater: '',
+    filtrado:[]
 };
-
 
 
 const Reducer = (state = initialState, { payload, type }) => {
@@ -11,7 +15,8 @@ const Reducer = (state = initialState, { payload, type }) => {
         case 'GET_RECIPES':
             return {
                 ...state,
-                recipes: payload
+                recipes: payload,
+                allRecipes:payload
             };
         case 'GET_RECIPE_DETAIL':
             return {
@@ -28,14 +33,24 @@ const Reducer = (state = initialState, { payload, type }) => {
                 ...state,
                 detail: payload
             };
-        case 'CLEAN_DETAIL':
+        case 'GET_RECIPE_DIETS':
             return{
                 ...state,
-                detail: payload
+                recipeDiets: payload
             };
         case 'CREATE_RECIPE':
             return{
                 ...state,
+                creater: payload
+            };
+        case 'DIETS_FILTER':
+            
+            var algo = filterByDiets(state.allRecipes, payload)
+            
+            return{
+                ...state,
+                recipes: algo,
+                
             };
 
         default:
