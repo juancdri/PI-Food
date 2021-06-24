@@ -25,26 +25,45 @@ console.log(getRecipesDetail)
     return (
         <StyledDiv>
             <h2 className="card-title">{recipesDetail.title}</h2>
-            
-            {recipesDetail.image? <img src={recipesDetail.image} width="80" height="80" alt="" />: null}
-            <h6>Resumen:{recipesDetail.summary}</h6>
-            {recipesDetail.diets?<h4>Diets:
-                {recipesDetail.diets && recipesDetail.diets.map((el, i) =>(<li key={i} >{el}</li>))}
-                </h4>:null}
-            {recipesDetail.Types?<h4>Diets:
-                {recipesDetail.Types && recipesDetail.Types.map((el, i) =>(<li key={i}>{el.name}</li>))}
-                </h4>:null}
-            {recipesDetail.dishTypes? <h5>Categoría:
-                {recipesDetail.dishTypes && recipesDetail.dishTypes.map((el, i) =>( <li key={i}>{el}</li>))}
-                </h5>:null} 
-            <h6>Health Score:{recipesDetail.healthScore}</h6>
-            <h6>Puntaje:{recipesDetail.spoonacularScore}</h6>
-            <h4>Paso a paso:
-                {recipesDetail.analyzedInstructions && recipesDetail.analyzedInstructions.map((el, i) =>( <li key={i} >{el}</li>))}
-                </h4>
-                <Link to='/home'>
-          <button  className='btn'>Back</button> 
-        </Link>
+            <div className='detail-img'>
+                {recipesDetail.image? <img src={recipesDetail.image} className='image'  alt="" />: null}
+            </div>
+            <div className='summary'>
+            <h3>Resumen: </h3>
+            <p>{recipesDetail.summary}</p>
+            </div>
+            <div className='container--dates'>
+                <div className='container--diets'>
+                    <h4>Diets: </h4>
+                        {recipesDetail.diets?<ul>
+                            {recipesDetail.diets && recipesDetail.diets.map((el, i) =>(<li key={i} >{el}</li>))}
+                    </ul>:null}
+                    {recipesDetail.Types?<ul>
+                        {recipesDetail.Types && recipesDetail.Types.map((el, i) =>(<li key={i}>{el.name}</li>))}
+                        </ul>:null}
+                </div>
+                <div className='container-category'>
+                    <h4>Categoria: </h4>
+                    {recipesDetail.dishTypes? <ul>
+                        {recipesDetail.dishTypes && recipesDetail.dishTypes.map((el, i) =>( <li key={i}>{el}</li>))}
+                        </ul>:null} 
+                </div>
+                <div className='container-healthS'>
+                    <h4>Health Score: {recipesDetail.healthScore}</h4>
+                </div>
+                <div className='container-generalScore'>
+                    <h4>Puntaje: {recipesDetail.spoonacularScore}</h4>
+                </div>
+                <div className='container-stepbystep'>
+                    <h4>Paso a paso </h4>
+                        {recipesDetail.analyzedInstructions && recipesDetail.analyzedInstructions.map((el, i) =>( <li key={i} >{el}</li>))}
+                </div>
+            </div>
+        <div className='btn'>
+            <Link to='/home' className='btn-back'>
+                <button>Back</button> 
+            </Link>
+        </div>
           {/* //hacer un onclick hacer un action que me resetee el state de details a cero */}
 
         </StyledDiv>

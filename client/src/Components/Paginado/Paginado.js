@@ -20,17 +20,13 @@ const Paginacion = ({ cardsPerPage, paginate }) => {
         
     }, [recipesFilteredByDiet]);
     return (
-        <div>
-            <ul>
+            <ul className='paginate-ul'>
                 {pageNumbers.map((number) => (
-                    <li>
+                    <li className='paginate-li'>
                         <a onClick={() => paginate(number)} href='#'>{number}</a>
                     </li>
                 ))}
             </ul>
-        </div>
-
-
     )
 
 };

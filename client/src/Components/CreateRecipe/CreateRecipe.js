@@ -91,6 +91,7 @@ export const CreateRecipe = () => {
         await axios.post(`http://localhost:3001/recipes/`, datos);
         // dispatch(createRecipe(datos));
         console.log(datos)
+        alert('Recipe created')
 
     }
     console.log(recipeDiets)
@@ -108,24 +109,30 @@ export const CreateRecipe = () => {
                             </option>
                         ))}
                 </select>
-                <ul>
-                    {datos.diets.length ? datos.diets.map((el) => (<li>{el}</li>)) : null}
+                <ul className='form--dietsadd'>
+                    {datos.diets.length ? datos.diets.map((el) => (<li className='form--li'>{el}</li>)) : null}
                 </ul>
                 <label>Recipe's name</label>
                 <input name="title" value={datos.title} type='text' placeholder="Recipe's name" onChange={(e) => validater(e.target.value, 'title')} />
+
                 <label>Summary</label>
                 <input name="summary" value={datos.summary} type='text' placeholder="Summary" onChange={(e) => validater(e.target.value, 'summary')} />
+
                 <label>Score</label>
                 <input name="spoonacularScore" value={datos.spoonacularScore} placeholder="Score" onChange={(e) => validater(e.target.value, 'spoonacularScore')} />
+
                 <label>Health Score</label>
                 <input name="healthScore" value={datos.healthScore} placeholder="Health Score" onChange={(e) => validater(e.target.value, 'healthScore')} />
+
                 <label>Steps</label>
                 <input name="analyzedInstructions" value={datos.analyzedInstructions} type='text' placeholder="Steps" onChange={(e) => validater(e.target.value, 'analyzedInstructions')} />
-                {error === -1 ? <button type="submit" > Create Recipe </button> : <span className={error && 'danger'} >{error}</span>}
+
+                {error === -1 ? <button type="submit" className="btn-submit"> Create Recipe </button> : <span className={error && 'danger'} >{error}</span>}
                 {/* <input type="submit" value=" Create Recipe" onClick={(e) => handleSubmit(e)}/> */}
                 {/* <button type="submit" > Create Recipe </button> */}
-                <Link to={`/home`}><button>BACK</button></Link>
-
+                <div className='btn'>
+                <Link to={`/home`} className='btn-back'><button >BACK</button></Link>
+                </div>
             </form>
             </div>
             {/* {!error ? null : <span className={error && 'danger'} >{error}</span>} */}

@@ -1,23 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { StyledDiv } from './style';
 
 const Card = ({id, title, image, diets, Types, dishTypes }) => {
     
     return (
-        <StyledDiv>
-            <Link to={`/details/${id}`} >
-            <h2 className="card-title">{title}</h2>
-            </Link>
-            {image? <img src={image} width="80" height="80" alt="" />: null}
-            {diets?<h4>Diets:
-                {diets && diets.map((el, i) =>(<li key={i} >{el}</li>))}
-                </h4>:null}
-            {Types?<h4>Diets:
-                {Types && Types.map((el, i) =>(<li key={i} >{el.name}</li>))}
-                </h4>:null}
-            {/* {dishTypes? <h5>{dishTypes}</h5>: null} */}
-        </StyledDiv>
+        <div className='card'>
+            <div className='card-select'>
+                <Link to={`/details/${id}`} className='card-link' >
+                <h2 className="card-title">{title}</h2>
+                </Link>
+                <div className='card-img'>
+                    {image? <img src={image} className='image' width="80" height="80" alt=""/>: null}
+                </div>
+                <ul className='card-ul'>
+                {diets?<div className='card-list'>
+                    {diets && diets.map((el, i) =>(<li key={i} className='card-li' >{el}</li>))}
+                    </div>:null}
+                {Types?<div className='card-list'>
+                    {Types && Types.map((el, i) =>(<li key={i} className='card-li' >{el.name}</li>))}
+                    </div>:null}
+                {/* {dishTypes? <h5>{dishTypes}</h5>: null} */}
+                </ul>
+            </div>
+        </div>
     )
 }
 export default Card;

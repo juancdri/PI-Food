@@ -36,10 +36,10 @@ export const Cards = () => {
 
     return (
         <StyledDiv>
-            <div>
+            <div className='paginate'>
                 <Paginado cardsPerPage={cardsPerPage} paginate={paginate} />
             </div>
-            <div >
+            <div className='container'>
                 {currentRecipes.map((el) => (
                     <Card
                         key={el.id}
