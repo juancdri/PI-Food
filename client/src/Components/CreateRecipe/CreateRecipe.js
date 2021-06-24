@@ -38,18 +38,18 @@ export const CreateRecipe = () => {
                 setDatos({ ...datos, summary: [value] });
                 break;
             case "healthScore":
-                if (parseInt(value) > 0 || value === '-') {
+                if (100 > parseInt(value) > 0 || value === '-') {
                     setError(-1);
                 } else {
-                    setError('el valor tiene que  un numero positivo');
+                    setError('el valor tiene que ser entre 0 y 100');
                 }
                 setDatos({ ...datos, healthScore: value });
                 break;
             case "spoonacularScore":
-                if (parseInt(value) > 0 || value === '-') {
+                if (100 > parseInt(value) > 0 || value === '-') {
                     setError(-1);
                 } else {
-                    setError('el valor tiene que ser un numero positivo');
+                    setError('el valor tiene que ser entre 0 y 100');
                 }
                 setDatos({ ...datos, spoonacularScore: value });
                 break;
@@ -87,9 +87,9 @@ export const CreateRecipe = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         await axios.post(`http://localhost:3001/recipes/`, datos);
         // dispatch(createRecipe(datos));
-        // dispatch(createRecipe(datos))//por si tengo que renderizar la shit
         console.log(datos)
 
     }
@@ -97,7 +97,8 @@ export const CreateRecipe = () => {
     // console.log(datos)
     return (
         <StyledDiv>
-            <form onSubmit={(e) => handleSubmit(e)} >
+            <div className='container'>
+            <form className='form' onSubmit={(e) => handleSubmit(e)} >
                 <label for="diets" >Choose diet/s:</label>
                 <select name="diets" id="diets" onChange={(e) => handleDiets(e)}>
                     {recipeDiets &&
@@ -110,17 +111,23 @@ export const CreateRecipe = () => {
                 <ul>
                     {datos.diets.length ? datos.diets.map((el) => (<li>{el}</li>)) : null}
                 </ul>
+                <label>Recipe's name</label>
                 <input name="title" value={datos.title} type='text' placeholder="Recipe's name" onChange={(e) => validater(e.target.value, 'title')} />
+                <label>Summary</label>
                 <input name="summary" value={datos.summary} type='text' placeholder="Summary" onChange={(e) => validater(e.target.value, 'summary')} />
+                <label>Score</label>
                 <input name="spoonacularScore" value={datos.spoonacularScore} placeholder="Score" onChange={(e) => validater(e.target.value, 'spoonacularScore')} />
+                <label>Health Score</label>
                 <input name="healthScore" value={datos.healthScore} placeholder="Health Score" onChange={(e) => validater(e.target.value, 'healthScore')} />
+                <label>Steps</label>
                 <input name="analyzedInstructions" value={datos.analyzedInstructions} type='text' placeholder="Steps" onChange={(e) => validater(e.target.value, 'analyzedInstructions')} />
-                {error === -1 ? null : <span className={error && 'danger'} >{error}</span>}
+                {error === -1 ? <button type="submit" > Create Recipe </button> : <span className={error && 'danger'} >{error}</span>}
                 {/* <input type="submit" value=" Create Recipe" onClick={(e) => handleSubmit(e)}/> */}
-                <button type="submit" > Create Recipe </button>
-                <Link to={`/home`}><button > BACK</button></Link>
+                {/* <button type="submit" > Create Recipe </button> */}
+                <Link to={`/home`}><button>BACK</button></Link>
 
             </form>
+            </div>
             {/* {!error ? null : <span className={error && 'danger'} >{error}</span>} */}
 
         </StyledDiv>
