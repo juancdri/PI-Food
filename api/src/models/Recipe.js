@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     summary: { //sumary
-      type: DataTypes.JSON,
+      type: DataTypes.STRING,
       allowNull: false
     },
     spoonacularScore:{ //spoonacularScore

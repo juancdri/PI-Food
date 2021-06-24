@@ -35,7 +35,7 @@ export const CreateRecipe = () => {
                 } else {
                     setError(-1);
                 }
-                setDatos({ ...datos, summary: [value] });
+                setDatos({ ...datos, summary: value});
                 break;
             case "healthScore":
                 if (100 > parseInt(value) > 0 || value === '-') {
