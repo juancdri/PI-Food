@@ -41,19 +41,3 @@ describe('Recipe routes', () => {
     );
   });
 });
-
-
-	//
-	// 	it('If the name query is passed, the pokemon should respond by that name', async () => {
-	// 		try {
-	// 			const res = await agent.get('/pokemons?name=bulbasaur');
-	// 			expect(res.body[0].name).to.be.equal('bulbasaur');
-	// 		} catch (err) {}
-	// 	}).timeout(400);
-	// 	it('If an id parameter is passed it must return the pokemon associated with that id', async () => {
-	// 		try {
-	// 			const res = await agent.get('/pokemons/1');
-	// 			expect(res.body[0].name).to.be.equal('bulbasaur');
-	// 		} catch (err) {}
-	// 	}).timeout(400);
-	// });

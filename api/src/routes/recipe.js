@@ -44,46 +44,89 @@ route.get('/', async (req, res) => {
 
 });
 
-route.get('/:id', async (req, res) => {
+route.get('/:id', async (req, res, next) => {
 
     //  Obtener el detalle de una receta en particular
     // Debe traer solo los datos pedidos en la ruta de detalle de receta
     // Incluir los tipos de dieta asociados
 let {id} = req.params
-  try {
+
+if(id.length < 10){
+  try{
     const response= await axios.get(`${URL_INFO}/${id}/information?apiKey=${YOUR_API_KEY}`)
-    const ee= response.data
-    // const games = await response.data
-    const receta = {
-        id: ee.id,
-        title: ee.title,
-        image: ee.image,
-        diets: ee.diets,
-        dishTypes: ee.dishTypes,
-        summary: ee.summary,
-        healthScore: ee.healthScore,
-        spoonacularScore: ee.spoonacularScore,
-        analyzedInstructions: (ee.analyzedInstructions.length > 0) ? ee.analyzedInstructions[0].steps.map(e => e.step) : ["No hay datos"]
-    }
-    // console.log(games)
-    return res.send(receta);
-    // return res.send(response.data);
-    } catch (error) {
-    if(error.response?.status === 404) {
-      const receta = await Recipe.findAll({
-        include:{
-          model: Type,
-          attributes: ['id','name'],
-          through:{
-              attributes:[],
-          }
-        }
-      });
-      const filtered = await receta.filter( e => e.id === id).shift()
-      return res.json(filtered);
-    }
-    return res.status(500).json({error: 'Sorry... id not found'})
+      const ee= response.data
+      // const games = await response.data
+      const receta = {
+          id: ee.id,
+          title: ee.title,
+          image: ee.image,
+          diets: ee.diets,
+          dishTypes: ee.dishTypes,
+          summary: ee.summary,
+          healthScore: ee.healthScore,
+          spoonacularScore: ee.spoonacularScore,
+          analyzedInstructions: (ee.analyzedInstructions.length > 0) ? ee.analyzedInstructions[0].steps.map(e => e.step) : ["No hay datos"]
+      }
+      // console.log(games)
+      return res.send(receta);
+  }catch(error){
+    next(error)
+
   }
+    // return res.send(response.data);
+}else{ 
+  try{
+    const receta = await Recipe.findAll({
+          include:{
+            model: Type,
+            attributes: ['id','name'],
+            through:{
+                attributes:[],
+            }
+          }
+        });
+        const filtered = await receta.filter( e => e.id === id).shift()
+        return res.json(filtered);
+  }
+  catch(error){
+    next(error)
+  }
+}
+
+  // try {
+  //   const response= await axios.get(`${URL_INFO}/${id}/information?apiKey=${YOUR_API_KEY}`)
+  //   const ee= response.data
+  //   // const games = await response.data
+  //   const receta = {
+  //       id: ee.id,
+  //       title: ee.title,
+  //       image: ee.image,
+  //       diets: ee.diets,
+  //       dishTypes: ee.dishTypes,
+  //       summary: ee.summary,
+  //       healthScore: ee.healthScore,
+  //       spoonacularScore: ee.spoonacularScore,
+  //       analyzedInstructions: (ee.analyzedInstructions.length > 0) ? ee.analyzedInstructions[0].steps.map(e => e.step) : ["No hay datos"]
+  //   }
+  //   // console.log(games)
+  //   return res.send(receta);
+  //   // return res.send(response.data);
+  //   } catch (error) {
+  //   if(error.response?.status === 404) {
+  //     const receta = await Recipe.findAll({
+  //       include:{
+  //         model: Type,
+  //         attributes: ['id','name'],
+  //         through:{
+  //             attributes:[],
+  //         }
+  //       }
+  //     });
+  //     const filtered = await receta.filter( e => e.id === id).shift()
+  //     return res.json(filtered);
+  //   }
+  //   return res.status(500).json({error: 'Sorry... id not found'})
+  // }
 });
 
 route.post('/', async (req, res) => {
