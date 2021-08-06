@@ -3,22 +3,21 @@ import { useEffect } from "react";
 
 const Paginacion = ({ cardsPerPage, paginate }) => {
     const recipes = useSelector((state) => state.recipes)
-    const filterName = useSelector((state) => state.filterName)
+    // const filterName = useSelector((state) => state.filterName)
     const recipesFilteredByDiet = useSelector((state) => state.recipesFilteredByDiet)
-    let pageNumbers = [];
     
+    var pageNumbers = [];
     for (var i = 1; i <= Math.ceil(recipes.length / cardsPerPage); i++) {
         pageNumbers.push(i)
     }
     useEffect(() => {
+        
         if(recipesFilteredByDiet.length){
             pageNumbers = [];
-            for (var i = 0; i <= Math.ceil(recipesFilteredByDiet.length / cardsPerPage); i++) {
-                pageNumbers.push(i)
-            }
+            for (var i = 0; i <= Math.ceil(recipesFilteredByDiet.length / cardsPerPage); i++) {pageNumbers.push(i)}
         }
-        
-    }, [recipesFilteredByDiet]);
+    }, [recipesFilteredByDiet,cardsPerPage]);
+    
     return (
             <ul className='paginate-ul'>
                 {pageNumbers.map((number) => (

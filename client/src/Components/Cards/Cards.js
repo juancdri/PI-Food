@@ -9,7 +9,6 @@ import Paginado from '../Paginado/Paginado';
 export const Cards = () => {
     const dispatch = useDispatch()
     const recipes = useSelector((state) => state.recipes)
-    const recipesFilteredByDiet = useSelector((state) => state.recipesFilteredByDiet)
     const filterName = useSelector((state) => state.filterName)
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -25,7 +24,7 @@ export const Cards = () => {
 
     useEffect(() => {
 		dispatch(getRecipes());
-	}, []);
+	}, [dispatch]);
 
     useEffect(()=>{
         if(filterName !== "all"){

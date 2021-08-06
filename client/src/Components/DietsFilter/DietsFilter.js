@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-// import { StyledDiv } from './style';
+import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRecipeDiets, dietsFilter } from '../../Actions'
 
@@ -7,19 +6,13 @@ function DietsFilter() {
     const dispatch = useDispatch();
     const recipeDiets = useSelector(state => state.recipeDiets);
 
-    const [dieta, setDieta] = useState('');
-    
-    
     useEffect(() => {
         dispatch(getRecipeDiets());
-    }, []);
+    },[dispatch]);
     
     function handleChange(e) {
         dispatch(dietsFilter(e.target.value))
     }
-
-   
-    
 
     return (
         <select name='diets' onChange={(e) => handleChange(e)}>

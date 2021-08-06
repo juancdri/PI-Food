@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StyledDiv } from './style';
 import { createRecipe, getRecipeDiets } from '../../Actions'
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 export const CreateRecipe = () => {
 
@@ -68,7 +67,7 @@ export const CreateRecipe = () => {
     }
     useEffect(() => {
         dispatch(getRecipeDiets());
-    }, []);
+    }, [dispatch]);
 
     const handleDiets = (e) => {
         if (!dietas.includes(e.target.value)) {
@@ -80,22 +79,14 @@ export const CreateRecipe = () => {
             setDietas(filtrado);
             setDatos({ ...datos, diets: filtrado })
         }
-        // else setDatos({...datos, diets: [e.target.value]}); //para cuando le agregue uno nada que ver
     };
-    console.log(datos)
-    console.log(dietas)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        await axios.post(`http://localhost:3001/recipes/`, datos);
-        // dispatch(createRecipe(datos));
-        console.log(datos)
+        dispatch(createRecipe(datos));
         alert('Recipe created')
-
     }
-    console.log(recipeDiets)
-    // console.log(datos)
+
     return (
         <StyledDiv>
             <div className='container'>
@@ -127,16 +118,12 @@ export const CreateRecipe = () => {
                 <label>Steps</label>
                 <input name="analyzedInstructions" value={datos.analyzedInstructions} type='text' placeholder="Steps" onChange={(e) => validater(e.target.value, 'analyzedInstructions')} />
 
-                {error === -1 ? <button type="submit" className="btn-submit"> Create Recipe </button> : <span className={error && 'danger'} >{error}</span>}
-                {/* <input type="submit" value=" Create Recipe" onClick={(e) => handleSubmit(e)}/> */}
-                {/* <button type="submit" > Create Recipe </button> */}
+                {error === -1 ? <button type="submit" className="btn-submit">Create Recipe</button> : <span className={error && 'danger'} >{error}</span>}
                 <div className='btn'>
                 <Link to={`/home`} className='btn-back'><button >BACK</button></Link>
                 </div>
             </form>
             </div>
-            {/* {!error ? null : <span className={error && 'danger'} >{error}</span>} */}
-
         </StyledDiv>
     )
 

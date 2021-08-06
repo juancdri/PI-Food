@@ -18,7 +18,7 @@ export const Detail = () => {
 console.log(getRecipesDetail)
     useEffect(()=>{
         return dispatch(cleanDetail())
-    },[]
+    },[dispatch]
     )
 
 
@@ -29,7 +29,7 @@ console.log(getRecipesDetail)
                 {recipesDetail.image? <img src={recipesDetail.image} className='image'  alt="" />: null}
             </div>
             <div className='summary'>
-            <h3>Resumen: </h3>
+            <h3>Summary: </h3>
             <p>{recipesDetail.summary}</p>
             </div>
             <div className='container--dates'>
@@ -43,7 +43,7 @@ console.log(getRecipesDetail)
                         </ul>:null}
                 </div>
                 <div className='container-category'>
-                    <h4>Categoria: </h4>
+                    <h4>Category: </h4>
                     {recipesDetail.dishTypes? <ul>
                         {recipesDetail.dishTypes && recipesDetail.dishTypes.map((el, i) =>( <li key={i}>{el}</li>))}
                         </ul>:null} 
@@ -52,10 +52,10 @@ console.log(getRecipesDetail)
                     <h4>Health Score: {recipesDetail.healthScore}</h4>
                 </div>
                 <div className='container-generalScore'>
-                    <h4>Puntaje: {recipesDetail.spoonacularScore}</h4>
+                    <h4>Score: {recipesDetail.spoonacularScore}</h4>
                 </div>
                 <div className='container-stepbystep'>
-                    <h4>Paso a paso </h4>
+                    <h4>Recipe's steps</h4>
                         {recipesDetail.analyzedInstructions && recipesDetail.analyzedInstructions.map((el, i) =>( <li key={i} >{el}</li>))}
                 </div>
             </div>
