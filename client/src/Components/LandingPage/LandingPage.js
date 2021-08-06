@@ -8,7 +8,7 @@ const LandingPage = () => {
         <StyledDiv>
             <div className="real">
                 <Link to='/home' >
-                    <button className="boton"> Home
+                    <button className="boton">Home
                     </button>
                 </Link>
             </div>
