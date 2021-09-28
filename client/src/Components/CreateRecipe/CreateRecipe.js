@@ -92,7 +92,7 @@ export const CreateRecipe = () => {
             <div className='container'>
             <form className='form' onSubmit={(e) => handleSubmit(e)} >
                 <label for="diets" >Choose diet/s:</label>
-                <select name="diets" id="diets" onChange={(e) => handleDiets(e)}>
+                <select name="diets" id="diets" onChange={(e) => handleDiets(e)} >
                     {recipeDiets &&
                         recipeDiets.map((e, i) => (
                             <option key={i} value={e.id} >
@@ -104,10 +104,10 @@ export const CreateRecipe = () => {
                     {datos.diets.length ? datos.diets.map((el) => (<li className='form--li'>{el}</li>)) : null}
                 </ul>
                 <label>Recipe's name</label>
-                <input name="title" value={datos.title} type='text' placeholder="Recipe's name" onChange={(e) => validater(e.target.value, 'title')} />
+                <input name="title" value={datos.title} type='text' placeholder="Recipe's name" onChange={(e) => validater(e.target.value, 'title')}  required/>
 
                 <label>Summary</label>
-                <input name="summary" value={datos.summary} type='text' placeholder="Summary" onChange={(e) => validater(e.target.value, 'summary')} />
+                <input name="summary" value={datos.summary} type='text' placeholder="Summary" onChange={(e) => validater(e.target.value, 'summary')} required/>
 
                 <label>Score</label>
                 <input name="spoonacularScore" value={datos.spoonacularScore} placeholder="Score" onChange={(e) => validater(e.target.value, 'spoonacularScore')} />
