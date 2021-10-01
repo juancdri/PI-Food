@@ -24,7 +24,7 @@ route.get('/', async (req, res) => {
     }))
 
     var dbRecetas = await Recipe.findAll({ include: [Type] })
-
+    console.log(dbRecetas)
     var todas = [...dbRecetas, ...recetas1]
 
     if (name === undefined) {
@@ -40,6 +40,7 @@ route.get('/', async (req, res) => {
 
 
 });
+
 
 route.get('/:id', async (req, res, next) => {
 
