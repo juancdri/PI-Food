@@ -23,9 +23,13 @@ module.exports = (sequelize) => {
     healthScore:{
       type: DataTypes.STRING
     },
+    image:{
+      type:DataTypes.STRING,
+      allowNull:true  
+    },
     analyzedInstructions:{ // es una url sourceUrl
       type: DataTypes.JSON,
     }
 
-  });
+  }, { timestamps: false });
 };
