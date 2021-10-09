@@ -1,4 +1,12 @@
 import filterByDiets from '../functions/filterByDiets';
+import {
+    AZorder, 
+    ZAorder,
+    better,
+    worst,
+
+} from './filters'
+
 const initialState = {
     allRecipes:[],
     recipesFilteredByDiet:[],
@@ -64,25 +72,25 @@ const Reducer = (state = initialState, { payload, type }) => {
         case 'ORDER_AZ':
             return{
                 ...state,
-                recipes: payload,
+                recipes: AZorder(state.allRecipes),
                 // filterName:'AZ'
             };
         case 'ORDER_ZA':
             return{
                 ...state,
-                recipes: payload,
+                recipes: ZAorder(state.allRecipes),
                 // filterName:'ZA'
             };
         case 'ORDER_BETTER':
             return{
                 ...state,
-                recipes: payload,
+                recipes: better(state.allRecipes),
                 // filterName:'BETTER'
             };
         case 'ORDER_WORST':
             return{
                 ...state,
-                recipes: payload,
+                recipes: worst(state.allRecipes),
                 // filterName:'WORST'
             };
 
