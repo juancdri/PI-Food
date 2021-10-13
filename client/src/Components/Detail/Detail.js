@@ -12,10 +12,8 @@ export const Detail = () => {
     const dispatch= useDispatch()
     console.log(idRecipe)
     useEffect(() => {
-        console.log('ENTRO')
 	    dispatch(getRecipesDetail(idRecipe));
 	}, [dispatch, idRecipe]);
-console.log(getRecipesDetail)
     useEffect(()=>{
         return dispatch(cleanDetail())
     },[dispatch]
