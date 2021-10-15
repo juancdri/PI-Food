@@ -1,11 +1,11 @@
 const {
-    searchDBInfo,
-    searchApiID,
     allRecipes
 } = require('../controllers/index')
+const {searchApiID} = require('../controllers/requestId')
+const {getBdInfo} = require('../controllers/requestDB')
 const { Recipe, Type } = require('../db');
 
-const searchName = async () => {
+const searchName = async (name) => {
     const recipe = await allRecipes()
     const lista = recipe.filter(e => e.title.toUpperCase().includes(name.toUpperCase()))
     const list = lista.slice(0, 9)
@@ -15,12 +15,13 @@ const searchName = async () => {
 
 }
 const searchId = async (id) => {
-    const search = await searchApiID()
+    const search = await searchApiID(id)
     if (search) { return search }
 
     const db = await searchDBInfo()
     const searchDB = db.find(e => e.id === id)
     if (db) { return searchDB }
+    return false
 }
 
 const searchAll = async () => {

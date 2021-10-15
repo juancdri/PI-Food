@@ -1,17 +1,16 @@
-const searchApiData = require('./requestApi')
-const searchDBInfo = require('./requestDB')
-const searchApiID = require('./requestId')
+const { getApiInfo } = require('./requestApi')
+const { getBdInfo } = require('./requestDB')
 
-const allRecipes = async ()=>{
-    const apiRecipes= await searchApiData()
-    const dbRecipes= await searchDBInfo()
+
+
+
+const allRecipes = async () => {
+    const apiRecipes = await getApiInfo()
+    const dbRecipes = await getBdInfo()
     const recipes = [...apiRecipes, ...dbRecipes]
-
+    
     return recipes
 }
 module.exports = {
-    searchApiData,
-    searchDBInfo,
-    searchApiID,
     allRecipes
 }

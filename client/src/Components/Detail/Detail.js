@@ -33,18 +33,18 @@ export const Detail = () => {
             <div className='container--dates'>
                 <div className='container--diets'>
                     <h4>Diets: </h4>
-                        {recipesDetail.diets?<ul>
-                            {recipesDetail.diets && recipesDetail.diets.map((el, i) =>(<li key={i} >{el}</li>))}
-                    </ul>:null}
-                    {recipesDetail.Types?<ul>
-                        {recipesDetail.Types && recipesDetail.Types.map((el, i) =>(<li key={i}>{el.name}</li>))}
-                        </ul>:null}
+                    {recipesDetail.diets
+                        ?<ul> {recipesDetail.diets && recipesDetail.diets.map((el, i) =>(<li key={i} >{el}</li>))} </ul>
+                        :null}
+                    {recipesDetail.Types
+                        ?<ul>{recipesDetail.Types && recipesDetail.Types.map((el, i) =>(<li key={i}>{el.name}</li>))}</ul>
+                        :null}
                 </div>
                 <div className='container-category'>
                     <h4>Category: </h4>
-                    {recipesDetail.dishTypes? <ul>
-                        {recipesDetail.dishTypes && recipesDetail.dishTypes.map((el, i) =>( <li key={i}>{el}</li>))}
-                        </ul>:null} 
+                    {recipesDetail.dishTypes
+                        ?<ul>{recipesDetail.dishTypes && recipesDetail.dishTypes.map((el, i) =>( <li key={i}>{el}</li>))}</ul>
+                        :null} 
                 </div>
                 <div className='container-healthS'>
                     <h4>Health Score: {recipesDetail.healthScore}</h4>
@@ -62,7 +62,6 @@ export const Detail = () => {
                 <button>Back</button> 
             </Link>
         </div>
-          {/* //hacer un onclick hacer un action que me resetee el state de details a cero */}
 
         </StyledDiv>
     )

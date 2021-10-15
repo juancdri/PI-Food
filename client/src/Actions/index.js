@@ -19,7 +19,7 @@ export const getRecipes = () => async (dispatch) => {
 		const res = await axios.get(`http://localhost:3001/recipes`);
 		dispatch({type: GET_RECIPES, payload: res.data});
 	} catch (err) {
-		console.log(err);
+		console.log(err, 'recetas de mierdaaaa');
 	}
 };
 export const getRecipeTitle = (name) => async (dispatch) => {

@@ -1,52 +1,48 @@
-const { default: axios } = require('axios');
-const { API_KEY_1, API_KEY_2, API_KEY_3, API_KEY_4, API_KEY_5 } = process.env;
-const { URL_INFO, URL_RECIPE } = require('../utils/path.js');
+const axios = require('axios').default;
 
+const { API_KEY_1, API_KEY_2, API_KEY_3, API_KEY_4, API_KEY_5, YOUR_API_KEY } = process.env;
 
-var index = 0
-var YOUR_API_KEY
-const searchApiData = async () => {
-    // switch (index) {
-    //     case 1: YOUR_API_KEY = API_KEY_1; break;
-    //     case 2: YOUR_API_KEY = API_KEY_2; break;
-    //     case 3: YOUR_API_KEY = API_KEY_3; break;
-    //     case 4: YOUR_API_KEY = API_KEY_4; break;
-    //     case 5: YOUR_API_KEY = API_KEY_5; break;
-    //     default: YOUR_API_KEY = API_KEY_1; break;
-    // }
-    apiKeys=[API_KEY_1, API_KEY_2, API_KEY_3, API_KEY_4, API_KEY_5]
-    try{
-        var recipe=[]
-        while(Object.keys(recipe).length === 0){
-        const recipeApi = await axios.get(`${URL_RECIPE}?apiKey=${apiKeys[index]}&number=100&addRecipeInformation=true`)
-        recipe = recipeApi.data.results
-        recipe.length !== 0
-        ?( recipe.map((e) => ({
-            id: e.id,
-            title: e.title,
-            image: e.image,
-            diets: e.diets,
-            dishTypes: e.dishTypes,
-            summary: e.summary,
-            healthScore: e.healthScore,
-            spoonacularScore: e.spoonacularScore,
-            analyzedInstructions: e.analyzedInstructions
-        })))
-        :index++
+var index = 1;
+var apiKey;
+
+//BUSCAR UNA LISTADO DE RESETAS completas
+const getApiInfo = async ()=>{
+    switch (index) {
+        case 1:  apiKey = API_KEY_1;break;
+        case 2:  apiKey = API_KEY_2;break;
+        case 3:  apiKey = API_KEY_3;break;
+        case 4:  apiKey = API_KEY_4;break;
+        case 5:  apiKey = API_KEY_5;break;
+        case 6:  apiKey = YOUR_API_KEY;break;
+        default:  apiKey = API_KEY_1;break;
     }
-    return recipe
-    }catch (error) {
-        
-        return [];
+    try{
+        const recipeApi = await axios.get (`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&addRecipeInformation=true&number=99`)
+        const recipe = recipeApi.data.results;
+        return recipe.map(e=>{
+            return {
+                id: e.id,
+                title: e.title,
+                summary:e.summary,        
+                image: e.image,
+                analyzedInstructions: e.analyzedInstructions,
+                score: e.healthScore,
+                diets: e.diets,
+                dishTypes: e.dishTypes,    
+            }
+        })
+    }catch(error){
+        //console.log(error,'error requestApi', index)
+        if (index >= 6) {
+            index = 1;
+        } else {
+            index++
+        }
+        return [index];
     };
-
-
-}
-module.exports = {
-    searchApiData
 }
 
-const searchByName = () => {
-    return false
 
-}
+module.exports={
+    getApiInfo
+ }
