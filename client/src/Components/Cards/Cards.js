@@ -22,9 +22,9 @@ export const Cards = () => {
 
     const paginate=(pageNumber) => setCurrentPage(pageNumber);
 
-    useEffect(() => {
+    useEffect(() => { 
 		dispatch(getRecipes());
-	}, [dispatch]);
+	}, []);
 
     useEffect(()=>{
         if(filterName !== "all"){

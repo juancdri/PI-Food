@@ -54,7 +54,7 @@ export const Detail = () => {
                 </div>
                 <div className='container-stepbystep'>
                     <h4>Recipe's steps</h4>
-                        {recipesDetail.analyzedInstructions && recipesDetail.analyzedInstructions.map((el, i) =>( <li key={i} >{el}</li>))}
+                        {recipesDetail.analyzedInstructions && recipesDetail.analyzedInstructions.map((el, i) =>( <li key={i} >{el.number}.{el.instruction}</li>))}
                 </div>
             </div>
         <div className='btn'>
