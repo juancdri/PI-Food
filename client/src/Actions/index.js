@@ -19,12 +19,12 @@ export const getRecipes = () => async (dispatch) => {
 		const res = await axios.get(`http://localhost:3001/recipes`);
 		dispatch({type: GET_RECIPES, payload: res.data});
 	} catch (err) {
-		console.log(err, 'recetas de mierdaaaa');
+		console.log(err, 'No hay recetas encontradas');
 	}
 };
 export const getRecipeTitle = (name) => async (dispatch) => {
     try {
-        const res = await axios.get(`http://localhost:3001/recipes?name=${name}`);
+        const res = await axios.get(`http://localhost:3001/recipes?name=${'name'}`);
         dispatch({type: GET_RECIPE_TITLE, payload: res.data});
     } catch (err) {
         console.log(err);
