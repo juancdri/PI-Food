@@ -1,8 +1,6 @@
-const {
-    allRecipes
-} = require('../controllers/index')
-const {searchApiID} = require('../controllers/requestId')
-const {getBdInfo} = require('../controllers/requestDB')
+const { allRecipes } = require('../controllers/index')
+const { searchApiID } = require('../controllers/requestId')
+const { getBdInfo } = require('../controllers/requestDB')
 const { Recipe, Type } = require('../db');
 
 const searchName = async (name) => {
@@ -15,13 +13,17 @@ const searchName = async (name) => {
 
 }
 const searchId = async (id) => {
-    const search = await searchApiID(id)
-    if (search) { return search }
 
-    const db = await searchDBInfo()
-    const searchDB = db.find(e => e.id === id)
-    if (db) { return searchDB }
-    return false
+    if (id.length < 8) {
+        const search = await searchApiID(id)
+        return search
+    } else if (id.length < 8) {
+        const db = await getBdInfo()
+        const searchDB = db.find(e => e.id === id)
+        return searchDB
+    } else {
+        return false
+    }
 }
 
 const searchAll = async () => {
@@ -44,8 +46,8 @@ createRecipe = async (title, summary, spoonacularScore, healthScore, analyzedIns
             analyzedInstructions,
 
         })
-        await recetaCreada.setTypes(diets)
-        return res.send(recetaCreada);
+        
+        return recetaCreada;
     }
 }
 
@@ -82,7 +84,7 @@ const searchByDiet = async (diet) => {
     return recipeFilter;
 }
 
-module.exports={
+module.exports = {
     searchName,
     searchId,
     searchType,
@@ -90,4 +92,4 @@ module.exports={
     createRecipe,
     createDiet,
     searchByDiet
- }
+}
