@@ -8,7 +8,7 @@ import {
 } from './filters'
 
 const initialState = {
-    allRecipes:['hola'],
+    allRecipes:[],
     recipesFilteredByDiet:[],
     recipes: [],
     detail: {},
