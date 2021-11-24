@@ -23,7 +23,7 @@ export const StyledDiv = styled.div`
     text-align:center;
     .image{
       width: 550px;
-      height: 300px;
+      height: 350px;
     }
   }
 

@@ -45,7 +45,7 @@ export const StyledDiv = styled.div`
         margin:auto;
         .card-img{
             margin:auto;
-            width:400px;
+            width:365px;
             height:150px;
             margin-top:10px;
           .image{
