@@ -28,7 +28,7 @@ export const Detail = () => {
             </div>
             <div className='summary'>
             <h3>Summary: </h3>
-            <p>{recipesDetail.summary}</p>
+            <p dangerouslySetInnerHTML={{ __html: recipesDetail.summary }}></p>
             </div>
             <div className='container--dates'>
                 <div className='container--diets'>
