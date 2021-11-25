@@ -33,7 +33,7 @@ route.get('/', async (req, res) => {
       return res.json(all)
     }
     catch (error) {
-      return res.status(400).send('CHOMASOOOOOOOOOOOOO')
+      return res.status(400).send('No hay recetas')
     }
   }
 
