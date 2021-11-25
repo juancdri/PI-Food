@@ -48,6 +48,7 @@ export const Cards = () => {
                         diets={el.diets}
                         Types={el.Types}
                         dishTypes={el.dishTypes}
+                        score = {el.score}
                     />
                 ))}
             </div>

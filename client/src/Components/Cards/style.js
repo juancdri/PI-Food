@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 export const StyledDiv = styled.div`
-  width:75%;
+  width:50%;
   margin:auto;
   margin-top:20px;
   margin-bottom:30px;
@@ -32,27 +32,31 @@ export const StyledDiv = styled.div`
   }
   .container{
     display: grid;
-    grid-template-columns:1fr 1fr 1fr;
+    grid-template-columns:1fr;
     grid-gap:2rem;
     .card{
-      box-shadow: 0 6rem 6rem 0 rgba(0, 0, 0, 0.6);
-      background-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 6rem 6rem 0 rgba(0, 0, 0, 0.2);
+      background-color: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(10px) saturate(100%) contrast(65%) brightness(130%);
       border-radius:6px;
-      .card-select{
-        width:450px;
-        height:300px;
-        margin:auto;
-        .card-img{
-            margin:auto;
-            width:365px;
-            height:150px;
-            margin-top:10px;
-          .image{
-            width:100%;
-            height:100%;
-          }
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      .card-img{
+          margin:auto;
+          width:15.5rem;
+          height:12rem;
+          margin-top:0px;
+        .image{
+          width:100%;
+          height:100%;
+          border-radius:6px;
         }
+      }
+      .card-select{
+        width:40rem;
+        height:12rem;
+        margin:auto;
         .card-link{
           text-decoration:none;
           color:black;
