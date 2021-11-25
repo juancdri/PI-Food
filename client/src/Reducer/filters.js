@@ -26,14 +26,14 @@ export const ZAorder = (array) => {
 
 export const better = (array) => {
     const recipes = array.sort((a, b) => {
-        return (parseInt(a.score) - parseInt(b.score))
+        return (parseInt(b.score) - parseInt(a.score))
     })
     return recipes
 }
 
 export const worst = (array) => {
     const recipes = array.sort((a, b) => {
-        return (parseInt(b.score) - parseInt(a.score))
+        return (parseInt(a.score) - parseInt(b.score))
     })
     return recipes
 }

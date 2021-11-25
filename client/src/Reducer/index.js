@@ -60,37 +60,37 @@ const Reducer = (state = initialState, { payload, type }) => {
             };
         case 'DIETS_FILTER':
             
-            var algo = filterByDiets(state.allRecipes, payload)
+            var filtered = filterByDiets(state.allRecipes, payload)
             
             return{
                 ...state,
-                recipes: algo,
-                recipesFilteredByDiet:algo,
+                recipes: filtered,
+                recipesFilteredByDiet:filtered,
                 filterName:payload
 
             };
         case 'ORDER_AZ':
             return{
                 ...state,
-                recipes: AZorder(state.allRecipes),
+                recipes: AZorder(payload),
                 // filterName:'AZ'
             };
         case 'ORDER_ZA':
             return{
                 ...state,
-                recipes: ZAorder(state.allRecipes),
+                recipes: ZAorder(payload),
                 // filterName:'ZA'
             };
         case 'ORDER_BETTER':
             return{
                 ...state,
-                recipes: better(state.allRecipes),
+                recipes: better(payload),
                 // filterName:'BETTER'
             };
         case 'ORDER_WORST':
             return{
                 ...state,
-                recipes: worst(state.allRecipes),
+                recipes: worst(payload),
                 // filterName:'WORST'
             };
 
